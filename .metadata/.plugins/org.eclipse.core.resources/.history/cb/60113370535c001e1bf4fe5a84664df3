@@ -1,0 +1,8 @@
+package controller;
+
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet(urlPatterns = "/user/new")
+public class UserNewController {
+
+}

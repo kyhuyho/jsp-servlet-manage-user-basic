@@ -1,0 +1,42 @@
+package controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.User;
+import repository.UserRepo;
+
+@WebServlet(urlPatterns = "/user/new")
+public class UserNewController extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/user-new.jsp");
+		dispatcher.forward(req, resp);
+	}
+
+	UserRepo userRepo = new UserRepo();
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+
+		User user = new User();
+		user.setId(Integer.parseInt(id));
+		user.setName(name);
+		user.setUsername(username);
+		user.setPassword(password);
+		userRepo.createUser(user);
+		System.out.println(id + name + username + password);
+		resp.sendRedirect(req.getContextPath() + "/user/search");
+	}
+
+}

@@ -1,0 +1,36 @@
+<%@page import="model.User"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Edit</title>
+</head>
+<body>
+	<%
+	Object obj = request.getAttribute("user");
+	User user = (User) obj;
+	%>
+	<h1>Edit User</h1>
+
+	<form action="/manageuser/user/new" method="post">
+		<div>
+			<input type="number" name="id" placeholder="Enter id...">
+		</div>
+		<div>
+			<input type="text" name="name" placeholder="Enter name...">
+		</div>
+		<div>
+			<input type="text" name="username" placeholder="Enter username...">
+		</div>
+		<div>
+			<input type="password" name="password"
+				placeholder="Enter password...">
+		</div>
+		<div>
+			<button type="submit">Create</button>
+		</div>
+	</form>
+</body>
+</html>
